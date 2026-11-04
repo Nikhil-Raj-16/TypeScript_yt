@@ -1,4 +1,4 @@
-Javascript mei hum wapas se var declare kar skte hai jo galat hai
+1. Javascript mei hum wapas se var declare kar skte hai jo galat hai
 e.g var a = 12
 var b = 13
 var a = 13
@@ -8,5 +8,13 @@ var a = 13
 var a = 12;
 a = "Nikhil"
 
-changed to number to string and not gives error in JS where in typescript it gives an error
+changed to number to string and not gives error in JS where in typescript it gives an error as string can't be assigned to number
+
+NOTE: Typescript is JS with improved versions with few more features
+
+
+
+// valid JS code is valid Typescript code here
+// to compile tsc file use tsc app.ts
+// if we don't want to compile the file we can use the command tsc --watch
 
