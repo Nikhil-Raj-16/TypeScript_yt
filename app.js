@@ -1,7 +1,4 @@
 "use strict";
-// Classes and Objects
-// •Class definition
-// •Constructors
 // •Access modifiers (public, private, protected)
 // •Readonly properties
 // •Optional properties
@@ -9,84 +6,123 @@
 // •Getters and setters
 // •Static members
 // •Abstract classes and methods
-class Device {
-    name = "lg";
-    price = 12000;
-    category = "digital";
-}
-let d1 = new Device();
-let d2 = new Device();
-// Constructors
-// this is like bottle,biscuit maker
 class BottleMaker {
     name;
-    price;
-    constructor(name, price) {
+    constructor(name) {
         this.name = name;
-        this.price = price;
+    }
+    changing() {
+        this.name = "borosil";
     }
 }
-let b1 = new BottleMaker("Milton", 1200);
-let b2 = new BottleMaker("Cello", 1500);
-class HumanMaker {
-    name;
-    isHandsome;
-    age = 0;
-    constructor(name, isHandsome) {
-        this.name = name;
-        this.isHandsome = isHandsome;
+// let b1 = new BottleMaker("Milton");
+// b1.changing()   
+// private only accessible inside class and not in the inherited class
+// public everywhere
+// 
+// by this we can change the value without any issues
+// b1.name = "cello"
+// to prevent this, we can use access modifiers if we write private name: string then we can't change it gives error but typescript still compiles it and it changes but error is given which we can ignore as it compiles the code
+// Error: Property 'name' is private and only accessible within class 'BottleMaker'.
+class MetalBottleMaker extends BottleMaker {
+    constructor(name) {
+        super(name); // parent class is passed
+    }
+    // used if public
+    getValue() {
+        console.log(this.name);
     }
 }
-let h1 = new HumanMaker('Nikhil', true);
-class Music {
-    name;
-    artist;
-    thumbnail;
-    length;
-    free;
-    constructor(name, artist, thumbnail = "somethumbnail.jpg", length, free) {
-        this.name = name;
-        this.artist = artist;
-        this.thumbnail = thumbnail;
-        this.length = length;
-        this.free = free;
-        if (!thumbnail) {
-            // as '' is falsy value so it runs
-            this.thumbnail = "somethumbnail.jpg";
-        }
+let b2 = new MetalBottleMaker("Borosil");
+// b2.getValue();
+// Protected can be used in that class and inherited class
+class BottleMaker1 {
+    name = "milton";
+}
+class MetalBottleMaker1 extends BottleMaker1 {
+    material = "metal";
+    changeName() {
+        this.name = "case";
     }
 }
-// same class can be made in another way which is more lengthy than above or first one 
-// class Music1{
-//     public name;
-//     public artist;
-//     public thumbnail;
-//     public length;
-//     public free;
-//     constructor( name : string, artist : string,  thumbnail : string = "somethumbnail.jpg",  length : number,  free : boolean){
-//         this.name = name;
-//         this.artist = artist;
-//         this.thumbnail = thumbnail;
-//         this.length = length;
-//         this.free = free;
-//     }
+let b3 = new MetalBottleMaker1();
+b3.changeName();
+// b3.name = ""  protected so can't use outside
+// Readonly Properties
+// class User {
+//   constructor(public readonly name: string) { }
+//   when readonly it gives error Cannot assign to 'name' because it is a read-only property.
+//   changeName() {
+//     this.name = "hellyow";
+//   }
 // }
-// this is less used as there is type inference in TypeScript
-let m1 = new Music('Chupke Chupke Raat din', 'Ghulam Ali', '', 480, false);
-// this is bad thing that we can change everything from here, so we have to solve using 'this' keyword
-m1.name = 'Hungama kyu hai Barpa';
-// this Keyword is used to give reference to that object
-// class ke andar kisi ko use karna hai toh this ka reference use karna hoga
-class Abcd {
-    name = "Nikhil";
-    changeFirstName() {
-        this.name;
-        this.changeLastName;
-        // if a variable is created inside a method it is accessible inside the method
-        let a = 12;
-        console.log(a);
+// let u1 = new User("Harsh");
+// u1.changeName()
+// Optional Properties  - gender?:string
+// class User1 {
+//   constructor(public name: string, public age: number, public gender?: string) { }
+// }
+// let u2 = new User1("Harsh", 25, "male");
+// let u3 = new User1("LagBataq", 18);
+// Parameter Properties 
+// means we can initilize and declare in the constructor and when the properties are created like this is called parameter prop.
+// class User2 {
+//   constructor(public name: string, public age: number) { }
+// }
+// Getters and Setters
+// getters is a method that give value from the class 
+// setters is a method that sets value inside class
+class User {
+    _name;
+    _age;
+    constructor(_name, _age) {
+        this._name = _name;
+        this._age = _age;
     }
-    changeLastName() {
+    get name() {
+        return this._name;
     }
+    set name(value) {
+        this._name = value;
+    }
+    get age() {
+        return this._age;
+    }
+}
+let u1 = new User("Nikhil", 23);
+// output
+// u1
+// User {_name: 'Nikhil', age: 23}
+// getter
+// u1.name 
+// 'Nikhil'
+// setter
+// u1.name = "Keshav"
+// 'Keshav'
+// u1
+// User {_name: 'Keshav', age: 23}
+// Static Members
+// when static is used we can access the value without creating instance of class
+// NOTE: static members are not included in the instance
+class Shery {
+    static version = 1.0;
+    static getRandomNumber() {
+        return Math.random();
+    }
+}
+// we can directly use Shery.version
+// Abstract Classes and methods
+// we don't create instance of a base class e.g pedh is base class and mango,apple tree are its instances
+class CookingEssentials {
+    gas;
+    gasKaName;
+    constructor(gas, gasKaName) {
+        this.gas = gas;
+        this.gasKaName = gasKaName;
+    }
+}
+class Sabji extends CookingEssentials {
+}
+class Cake extends CookingEssentials {
 }
 //# sourceMappingURL=app.js.map

@@ -1,36 +1,41 @@
-declare class Device {
-    name: string;
-    price: number;
-    category: string;
-}
-declare let d1: Device;
-declare let d2: Device;
 declare class BottleMaker {
     name: string;
-    price: number;
-    constructor(name: string, price: number);
+    constructor(name: string);
+    changing(): void;
 }
-declare let b1: BottleMaker;
-declare let b2: BottleMaker;
-declare class HumanMaker {
-    name: string;
-    isHandsome: boolean;
-    age: number;
-    constructor(name: string, isHandsome: boolean);
+declare class MetalBottleMaker extends BottleMaker {
+    constructor(name: string);
+    getValue(): void;
 }
-declare let h1: HumanMaker;
-declare class Music {
-    name: string;
-    artist: string;
-    thumbnail: string;
-    length: number;
-    free: boolean;
-    constructor(name: string, artist: string, thumbnail: string | undefined, length: number, free: boolean);
+declare let b2: MetalBottleMaker;
+declare class BottleMaker1 {
+    protected name: string;
 }
-declare let m1: Music;
-declare class Abcd {
-    name: string;
-    changeFirstName(): void;
-    changeLastName(): void;
+declare class MetalBottleMaker1 extends BottleMaker1 {
+    material: string;
+    changeName(): void;
+}
+declare let b3: MetalBottleMaker1;
+declare class User {
+    _name: string;
+    _age: number;
+    constructor(_name: string, _age: number);
+    get name(): string;
+    set name(value: string);
+    get age(): number;
+}
+declare let u1: User;
+declare class Shery {
+    static version: number;
+    static getRandomNumber(): number;
+}
+declare class CookingEssentials {
+    protected gas: number;
+    gasKaName: string;
+    constructor(gas: number, gasKaName: string);
+}
+declare class Sabji extends CookingEssentials {
+}
+declare class Cake extends CookingEssentials {
 }
 //# sourceMappingURL=app.d.ts.map
