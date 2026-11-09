@@ -1,11 +1,18 @@
-declare function abcd(name: string, cb: (value: string) => void): void;
-declare function abcdef(name: string, age: number, cb: (arg: string) => void): void;
-declare function user(name: string, age: number, gender?: string): void;
-declare function user1(name: string, age: number, gender?: string): void;
-declare function sum(...arr: number[]): void;
-declare function candy(...arr: string[]): void;
-declare var arr: number[];
-declare var arr2: number[];
-declare function funoverload(a: string): void;
-declare function funoverload(a: string, b: number): number;
+declare function logger(a: string): void;
+declare function abcd<T>(a: T): void;
+declare function abcd1<H>(a: H, b: string, c: number): void;
+declare function log<T>(val: T): void;
+interface Halua<T> {
+    name: string;
+    age: number;
+    key: T;
+}
+declare function xyz(obj: Halua<string>): void;
+declare class BottleMaker<T> {
+    key: T;
+    constructor(key: T);
+}
+declare let b1: BottleMaker<string>;
+declare let b2: BottleMaker<number>;
+declare function jkl<T>(a: T, b: T): T;
 //# sourceMappingURL=app.d.ts.map
