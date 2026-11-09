@@ -1,19 +1,46 @@
 "use strict";
-// Type Assertions
-// type Casting
-//  non-null assertion operator
-// type assertions ka matlab batana ts ko ki particular chiz ka type kya hai, ye aap tab karte hai jab aap ts se jaadaa us value ka type jante hai
-// typescript se jyada aap jante hai uske data type ke baare mei that is called type Assertions
-// Type Assertion in TypeScript is a mechanism that tells the compiler: "I know more about the type of this value than you do—treat it as this specific type."
-let a = 12;
-// (a as string). string properties
-// (a as number).  number properties
-// (<number>a).
-// (<string>a).
-let b = Number("123");
-console.log(typeof b); // number
-let c;
-c = "hey";
-// c! means the value will not be null or undefined
-// c!. gives string properties
+// Type Guards and typeScript Utility
+//  using typeof and instanceof
+//  Partial, required and readonly
+// 1. in Type guards we have used typeof i.e type narrowing
+function abcd(arg) {
+    // arg. gives the common of both string and number so we can use type narrowing
+    if (typeof arg === "number") {
+        // arg.   gives the number properties
+        // console.log("number");
+        return "number";
+    }
+    else if (typeof arg === "string") {
+        // console.log("string");
+        return "string";
+        // arg. gives the properties of string
+    }
+    else {
+        throw new Error("Error Detect ho gaya");
+    }
+}
+console.log(abcd(12));
+console.log(abcd("KEY"));
+console.log(abcd(true));
+// 2. typeof and instanceof
+class TvkaRemote {
+    switchTVoff() {
+        console.log("Switching Off TV");
+    }
+}
+class carKaRemote {
+    switchCaroff() {
+        console.log("Switching Off Car");
+    }
+}
+const tv = new TvkaRemote();
+const car = new carKaRemote();
+function switchoffKaro(device) {
+    if (device instanceof TvkaRemote) {
+        device.switchTVoff();
+    }
+    else if (device instanceof carKaRemote) {
+        device.switchCaroff();
+    }
+}
 //# sourceMappingURL=app.js.map
